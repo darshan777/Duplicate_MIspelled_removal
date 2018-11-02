@@ -54,11 +54,13 @@ public class CsvReaderImpl implements CsvReader {
                 personData.setState(nextRecord[10]);
                 personData.setPhone(nextRecord[11]);
                 csvDataList.add(personData);
+
             }
         }
         catch (Exception e) {
             e.printStackTrace();
         }
+        System.out.println(csvDataList);
         return  csvDataList;
     }
 }
