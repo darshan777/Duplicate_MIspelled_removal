@@ -3,14 +3,12 @@ package com.validity.demo.controller;
 import com.validity.demo.service.main.CsvDataLoad;
 import com.validity.demo.service.Impl.CsvDataLoadImpl;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
 @RestController
+@CrossOrigin
 public class CsvController {
 
     @RequestMapping(value ="/", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
