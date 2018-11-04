@@ -19,7 +19,7 @@ public class RemoveDuplicateImpl implements RemoveDuplicate {
     public ArrayList<CsvData> CsvDataWithNoDuplicate(){
         ArrayList<CsvData> CsvDataNoDuplicate = new ArrayList<>();
         CsvReader csvReader = new CsvReaderImpl();
-        CsvDataNoDuplicate = csvReader.getCsvData("");
+        CsvDataNoDuplicate = csvReader.getCsvData("C:/Users/Vrunda/Desktop/Validity_Retest/Validity_Retest/src/main/java/com/validity/demo/dao/resource/normal[1].csv");
         ArrayList<CsvData> miss = new ArrayList<>();
         for(int i=0; i<CsvDataNoDuplicate.size()-1; i++ ) {
             for(int j = i+1; j<CsvDataNoDuplicate.size(); j++) {

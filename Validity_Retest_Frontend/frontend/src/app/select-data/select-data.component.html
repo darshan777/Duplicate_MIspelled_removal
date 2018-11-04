@@ -1,3 +1,43 @@
-<p>
-  select-data works!
-</p>
+<div class="row">
+  <button (click) ='noDuplicate()'>No duplicate</button><br><br>
+  <button (click) ='noMispell()'>No Mispelled</button><br><br>
+  <button> Back </button><br><br>
+</div>
+
+<div class="container">
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">first_name</th>
+      <th scope="col">last_name</th>
+      <th scope="col">company</th>
+      <th scope="col"> email </th>
+      <th scope="col"> address1 </th>
+      <th scope="col"> address2 </th>
+      <th scope="col"> zip </th>
+      <th scope="col"> city </th>
+      <th scope="col"> state_long </th>
+      <th scope="col"> state </th>
+      <th scope="col"> phone </th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of csvData">
+      <th scope="row">{{ data.id}}</th>
+      <td>{{ data.first_name}}</td>
+      <td>{{ data.last_name}}</td>
+      <td>{{ data.company}}</td>
+      <td>{{ data.email}}</td>
+      <td>{{ data.address1}}</td>
+      <td>{{ data.address2}}</td>
+      <td>{{ data.zip}}</td>
+      <td>{{ data.city}}</td>
+      <td>{{ data.state_long}}</td>
+      <td>{{ data.state}}</td>
+      <td>{{ data.phone}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

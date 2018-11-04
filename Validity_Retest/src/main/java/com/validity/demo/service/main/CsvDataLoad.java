@@ -1,5 +1,9 @@
 package com.validity.demo.service.main;
 
+import com.validity.demo.helper.CsvData;
+
+import java.util.ArrayList;
+
 public interface CsvDataLoad {
-    public boolean loaadCsv(String fileName);
+    public ArrayList<CsvData> loaadCsv(String fileName);
 }

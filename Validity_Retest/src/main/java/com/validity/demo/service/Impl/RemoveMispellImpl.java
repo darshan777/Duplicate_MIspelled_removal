@@ -13,7 +13,7 @@ public class RemoveMispellImpl implements RemoveMispell {
     @Override
     public ArrayList<CsvData> removeMissSpell() {
         CsvReader csvReader = new CsvReaderImpl();
-        ArrayList<CsvData> data = csvReader.getCsvData("");
+        ArrayList<CsvData> data = csvReader.getCsvData("C:/Users/Vrunda/Desktop/Validity_Retest/Validity_Retest/src/main/java/com/validity/demo/dao/resource/normal[1].csv");
         ArrayList<CsvData> dataWithoutMispell = new ArrayList<>();
         for (int i = 0; i < data.size() - 1; i++) {
             for (int j = i + 1; j < data.size(); j++) {

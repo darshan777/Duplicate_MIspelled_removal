@@ -10,13 +10,13 @@ import java.util.ArrayList;
 public class CsvDataLoadImpl implements CsvDataLoad {
 
     @Override
-    public boolean loaadCsv(String fileName){
+    public ArrayList<CsvData> loaadCsv(String fileName){
         CsvReader csvReader = new CsvReaderImpl();
         ArrayList<CsvData> csvDataArrayList = csvReader.getCsvData(fileName);
         if(csvDataArrayList!=null){
-            return true;
+            return csvDataArrayList;
         }
         System.out.println(csvDataArrayList+"SErvice calads");
-        return false;
+        return csvDataArrayList;
     }
 }

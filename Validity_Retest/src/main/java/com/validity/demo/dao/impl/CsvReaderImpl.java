@@ -4,7 +4,10 @@ import com.opencsv.CSVReader;
 import com.validity.demo.dao.main.CsvReader;
 import com.validity.demo.helper.CsvData;
 
+import java.io.File;
 import java.io.FileReader;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 /**
@@ -20,15 +23,16 @@ public class CsvReaderImpl implements CsvReader {
     @Override
     public ArrayList<CsvData> getCsvData(String fileName){
         ArrayList<CsvData> csvDataList = new ArrayList<>();
+        File ff = new File("src/main/java/com.validity.demo/dao/resource/normal[1].csv");
+        String abs = ff.getAbsolutePath();
+
+        System.out.println(abs);
+        Path currentDir = Paths.get("/src/main/java/com.validity.demo/dao/resource/normal[1].csv");
+        String Path = currentDir.toAbsolutePath().toString();
+        System.out.println(fileName);
         try {
-            System.out.println(fileName);
             FileReader filereader = new FileReader(fileName);
-
-
             CSVReader csvReader = new CSVReader(filereader, ',', '"', 1);
-
-
-
             String[] nextRecord;
             while ((nextRecord = csvReader.readNext()) != null) {
                 CsvData personData = new CsvData();

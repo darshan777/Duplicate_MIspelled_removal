@@ -1,3 +1,14 @@
-<p>
-  select-csv works!
-</p>
+<div class="container">
+
+  <form  (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label >Please Select a CSV</label>
+      <select class="form-control" [formControl]="csvfile" >
+
+        <option>normal[1]</option>
+        <option>advanced[1]</option>
+      </select>
+      <button>Submit</button>
+    </div>
+  </form>
+</div>
