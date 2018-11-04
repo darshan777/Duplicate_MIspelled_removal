@@ -10,7 +10,8 @@ import { CsvServiceService } from "../service/csv-service.service";
 export class SelectDataComponent implements OnInit {
   currentFile = String;
   dataList: boolean;
-  csvData : CsvData[];
+  csvDataList : any =[];
+  csvData : CsvData;
   constructor( private csvService : CsvServiceService) { }
 
   ngOnInit() {
@@ -19,14 +20,14 @@ export class SelectDataComponent implements OnInit {
   }
   noDuplicate(){
     this.csvService.getAllDataWithoutDuplicate().subscribe(
-      (Response) =>{this.csvData = Response; console.log(this.csvData);}
+      (data : {}) => {this.csvDataList = data; console.log(this.csvDataList);}
     );
 
     this.dataList = true;
   }
   noMispell(){
     this.csvService.getAllDataWithoutDuplicateAndMispell().subscribe(
-      (Response) =>{this.csvData = Response; console.log(this.csvData);}
+      (data : {}) => {this.csvDataList = data; console.log(this.csvDataList);}
     );
     this.dataList = false;
   }

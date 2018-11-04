@@ -11,5 +11,4 @@ export interface CsvData {
   state_long : string;
   state : string;
   phone : string;
-
 }
