@@ -1,0 +1,55 @@
+<nav class="navbar sticky-top navbar-light bg-light">
+  <div class="col-md-4">
+      <p>CSV Selected : {{currentFile}}</p>
+  </div>
+  <div class="col-md-2">
+    <button (click) ='noDuplicate()' class="btn btn-outline-success my-2 my-sm-0" type="submit">No duplicate</button>
+  </div>
+  <div class="col-md-2">
+    <button (click) ='noMispell()' class="btn btn-outline-success my-2 my-sm-0" type="submit">No Mispelled</button>
+  </div>
+  <div class="col-md-3">
+
+  </div>
+  <div class="col-md-1">
+    <button (click) ='goBack()' class="btn btn-outline-success my-2 my-sm-0" type="submit">Home</button>
+  </div>
+</nav>
+
+<div style="padding: 15px;">
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">first_name</th>
+      <th scope="col">last_name</th>
+      <th scope="col">company</th>
+      <th scope="col"> email </th>
+      <th scope="col"> address1 </th>
+      <th scope="col"> address2 </th>
+      <th scope="col"> zip </th>
+      <th scope="col"> city </th>
+      <th scope="col"> state_long </th>
+      <th scope="col"> state </th>
+      <th scope="col"> phone </th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of csvDataList">
+      <th scope="row">{{ data.id}}</th>
+      <td>{{ data.first_name}}</td>
+      <td>{{ data.last_name}}</td>
+      <td>{{ data.company}}</td>
+      <td>{{ data.email}}</td>
+      <td>{{ data.address1}}</td>
+      <td>{{ data.address2}}</td>
+      <td>{{ data.zip}}</td>
+      <td>{{ data.city}}</td>
+      <td>{{ data.state_long}}</td>
+      <td>{{ data.state}}</td>
+      <td>{{ data.phone}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

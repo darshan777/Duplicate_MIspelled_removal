@@ -1,0 +1,15 @@
+<div style="padding: 10% 35%;">
+
+  <form  (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label >Please Select a CSV</label>
+      <div style="width:300px">
+      <select class="form-control" [formControl]="csvfile" >
+        <option>normal</option>
+        <option>advanced</option>
+      </select>
+      </div><br>
+      <button  class="btn btn-outline-success my-2 my-sm-0" type="submit">Submit</button>
+    </div>
+  </form>
+</div>
