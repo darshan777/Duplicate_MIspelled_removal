@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import  { CsvData } from "../model/CsvData";
 import { CsvServiceService } from "../service/csv-service.service";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-select-data',
@@ -8,11 +9,11 @@ import { CsvServiceService } from "../service/csv-service.service";
   styleUrls: ['./select-data.component.css']
 })
 export class SelectDataComponent implements OnInit {
-  currentFile = String;
-  dataList: boolean;
+  currentFile : String;
   csvDataList : any =[];
-  csvData : CsvData;
-  constructor( private csvService : CsvServiceService) { }
+
+
+  constructor( private csvService : CsvServiceService, private router: Router) { }
 
   ngOnInit() {
     this.currentFile = JSON.parse(localStorage.getItem('currentFile'));
@@ -23,12 +24,13 @@ export class SelectDataComponent implements OnInit {
       (data : {}) => {this.csvDataList = data; console.log(this.csvDataList);}
     );
 
-    this.dataList = true;
   }
   noMispell(){
     this.csvService.getAllDataWithoutDuplicateAndMispell().subscribe(
       (data : {}) => {this.csvDataList = data; console.log(this.csvDataList);}
     );
-    this.dataList = false;
+  }
+  goBack(){
+    this.router.navigate(['/']);
   }
 }

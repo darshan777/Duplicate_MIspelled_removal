@@ -11,7 +11,7 @@ import { CsvData } from "../model/CsvData";
 export class SelectCsvComponent implements OnInit {
   selectCsv: FormGroup;
   constructor(private router: Router) { }
-  csvfile = new FormControl('normal[1]');
+  csvfile = new FormControl('normal');
   ngOnInit() {
 
   }

@@ -11,7 +11,8 @@ import { Observable, of } from 'rxjs';
 })
 export class CsvServiceService {
   csvData:any =[];
-  Csv : CsvData;
+  data : number;
+  name : string;
   constructor(private http: HttpClient) { }
   private extractData(res: Response) {
     let body = res;
@@ -19,7 +20,15 @@ export class CsvServiceService {
   }
 
   getAllDataWithoutDuplicate(): Observable<any>{
-    return this.http.get('http://localhost:8000/noduplicate' ).pipe(
+     this.name = JSON.parse(localStorage.getItem('currentFile'));
+    if(this.name === "normal[1]"){
+      this.data = 1;
+    }
+    else {
+      this.data = 2;
+    }
+    console.log(this.name+":"+this.data);
+    return this.http.get('http://localhost:8000/csv/noduplicate/'+ this.data ).pipe(
       map(this.extractData)
     );
 
@@ -27,7 +36,15 @@ export class CsvServiceService {
   }
 
   getAllDataWithoutDuplicateAndMispell(): Observable<any>{
-    return this.http.get('http://localhost:8000/nomispell' ).pipe(
+    this.name = JSON.parse(localStorage.getItem('currentFile'));
+    if(this.name == "normal[1]"){
+      this.data = 1;
+    }
+    else {
+      this.data = 2;
+    }
+    console.log(this.name+":"+this.data);
+    return this.http.get('http://localhost:8000/csv/nomispell/'+ this.data).pipe(
       map(this.extractData)
     );
   }

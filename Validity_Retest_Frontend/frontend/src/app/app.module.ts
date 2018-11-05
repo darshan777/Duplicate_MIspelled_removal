@@ -8,8 +8,9 @@ import { SelectDataComponent } from './select-data/select-data.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { CsvServiceService } from "./service/csv-service.service";
-import { SidebarComponent } from './sidebar/sidebar.component';
 import  { HttpClientModule } from "@angular/common/http";
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 
 const appRoutes: Routes = [
   { path: '', component: SelectCsvComponent },
@@ -21,7 +22,9 @@ const appRoutes: Routes = [
     AppComponent,
     SelectCsvComponent,
     SelectDataComponent,
-    SidebarComponent,
+    HeaderComponent,
+    FooterComponent
+
 
   ],
   imports: [

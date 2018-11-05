@@ -15,27 +15,22 @@ import java.util.ArrayList;
 
 @RestController
 @CrossOrigin
-@RequestMapping(value = "")
+
+@RequestMapping(value = "/csv")
 public class CsvController {
 
-    @RequestMapping(value ="/", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ArrayList<CsvData> storeCsvData(@Valid @RequestBody String fileName){
-        CsvDataLoad csvDataLoad = new CsvDataLoadImpl();
-        fileName = "C:/Users/Vrunda/Desktop/Validity_Retest/Validity_Retest/src/main/java/com/validity/demo/dao/resource/normal[1].csv";
-        ArrayList<CsvData> isDone =  csvDataLoad.loaadCsv(fileName);
-
-        return isDone;
-    }
-
-    @GetMapping(value = "/noduplicate")
-    public ArrayList<CsvData> getDataWithoutDuplicate(){
+    
+    @GetMapping(value = "/noduplicate/{filename}")
+    public ArrayList<CsvData> getDataWithoutDuplicate(@PathVariable(value = "filename") Integer name){
+        System.out.println(name);
         RemoveDuplicate removeDuplicate = new RemoveDuplicateImpl();
         ArrayList<CsvData> csvDataNoDuplicate = removeDuplicate.CsvDataWithNoDuplicate();
         return csvDataNoDuplicate;
     }
 
-    @GetMapping(value = "/nomispell")
-    public ArrayList<CsvData> getDataWithoutMispell(){
+    @GetMapping(value = "/nomispell/{filename}")
+    public ArrayList<CsvData> getDataWithoutMispell(@PathVariable(value = "filename") Integer name ){
+        System.out.println(name);
         RemoveMispell removeMispell = new RemoveMispellImpl();
         ArrayList<CsvData> csvDataNoMispell = removeMispell.removeMissSpell();
         return csvDataNoMispell;
