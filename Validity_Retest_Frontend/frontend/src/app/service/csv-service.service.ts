@@ -21,7 +21,7 @@ export class CsvServiceService {
 
   getAllDataWithoutDuplicate(): Observable<any>{
      this.name = JSON.parse(localStorage.getItem('currentFile'));
-    if(this.name === "normal[1]"){
+    if(this.name === "normal"){
       this.data = 1;
     }
     else {

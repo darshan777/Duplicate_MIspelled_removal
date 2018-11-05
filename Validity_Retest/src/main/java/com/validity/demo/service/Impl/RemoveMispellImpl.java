@@ -2,6 +2,7 @@ package com.validity.demo.service.Impl;
 import com.validity.demo.dao.impl.CsvReaderImpl;
 import com.validity.demo.dao.main.CsvReader;
 import com.validity.demo.helper.CsvData;
+import com.validity.demo.service.main.RemoveDuplicate;
 import com.validity.demo.service.main.RemoveMispell;
 import java.util.ArrayList;
 
@@ -11,9 +12,9 @@ public class RemoveMispellImpl implements RemoveMispell {
      * Compares Email_id, First_name, Last_name
      */
     @Override
-    public ArrayList<CsvData> removeMissSpell() {
-        CsvReader csvReader = new CsvReaderImpl();
-        ArrayList<CsvData> data = csvReader.getCsvData("C:/Users/Vrunda/Desktop/Validity_Retest/Validity_Retest/src/main/java/com/validity/demo/dao/resource/normal[1].csv");
+    public ArrayList<CsvData> removeMissSpell(int file) {
+        RemoveDuplicate removeDuplicate = new RemoveDuplicateImpl();
+        ArrayList<CsvData> data = removeDuplicate.CsvDataWithNoDuplicate(file);
         ArrayList<CsvData> dataWithoutMispell = new ArrayList<>();
         for (int i = 0; i < data.size() - 1; i++) {
             for (int j = i + 1; j < data.size(); j++) {

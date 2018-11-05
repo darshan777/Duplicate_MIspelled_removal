@@ -3,6 +3,10 @@ package com.validity.demo.dao.impl;
 import com.opencsv.CSVReader;
 import com.validity.demo.dao.main.CsvReader;
 import com.validity.demo.helper.CsvData;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 
 import java.io.File;
 import java.io.FileReader;
@@ -20,16 +24,12 @@ public class CsvReaderImpl implements CsvReader {
      * @return ArrayList
      * This method returns An Arraylist of csv data
      */
+    @Autowired
+    private ResourceLoader res;
+
     @Override
     public ArrayList<CsvData> getCsvData(String fileName){
         ArrayList<CsvData> csvDataList = new ArrayList<>();
-        File ff = new File("src/main/java/com.validity.demo/dao/resource/normal[1].csv");
-        String abs = ff.getAbsolutePath();
-
-        System.out.println(abs);
-        Path currentDir = Paths.get("/src/main/java/com.validity.demo/dao/resource/normal[1].csv");
-        String Path = currentDir.toAbsolutePath().toString();
-        System.out.println(fileName);
         try {
             FileReader filereader = new FileReader(fileName);
             CSVReader csvReader = new CSVReader(filereader, ',', '"', 1);
@@ -64,7 +64,6 @@ public class CsvReaderImpl implements CsvReader {
         catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println(csvDataList);
         return  csvDataList;
     }
 }
