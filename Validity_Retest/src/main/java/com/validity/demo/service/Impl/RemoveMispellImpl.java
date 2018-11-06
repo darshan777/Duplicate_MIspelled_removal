@@ -7,7 +7,9 @@ import com.validity.demo.service.main.RemoveMispell;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 
-
+/**
+ * Author Darshan
+ */
 @Service
 public class RemoveMispellImpl implements RemoveMispell {
     ArrayList<CsvData> mispellDataList = new ArrayList<>();
@@ -50,10 +52,14 @@ public class RemoveMispellImpl implements RemoveMispell {
         return data;
     }
 
+    /**
+     * get data of mispelled words in that list
+     * @param file
+     * @return
+     */
     @Override
     public ArrayList<CsvData> getMispell(int file){
         removeMissSpell(file);
-        System.out.println("File number for Mispell "+file);
         return mispellDataList;
     }
     /**

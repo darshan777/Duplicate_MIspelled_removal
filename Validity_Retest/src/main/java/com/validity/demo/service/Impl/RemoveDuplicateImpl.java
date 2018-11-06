@@ -24,6 +24,7 @@ public class RemoveDuplicateImpl implements RemoveDuplicate {
         ArrayList<CsvData> CsvDataNoDuplicate = new ArrayList<>();
 
         CsvReader csvReader = new CsvReaderImpl();
+        //passing the file path for reding csv
         if(file == 1){
             File ff = new File("src\\main\\resources\\normal[1].csv");
             CsvDataNoDuplicate = csvReader.getCsvData(ff.getAbsolutePath());
@@ -38,6 +39,7 @@ public class RemoveDuplicateImpl implements RemoveDuplicate {
             File ff = new File("src\\main\\resources\\normal[1].csv");
             CsvDataNoDuplicate = csvReader.getCsvData(ff.getAbsolutePath());
         }
+        //Iterating over the list to find exact duplicates
         for(int i=0; i<CsvDataNoDuplicate.size()-1; i++ ) {
             for (int j = i + 1; j < CsvDataNoDuplicate.size(); j++) {
                 if ((CsvDataNoDuplicate.get(i).getEmail().equals(CsvDataNoDuplicate.get(j).getEmail())) && (CsvDataNoDuplicate.get(i).getFirst_name().equals(CsvDataNoDuplicate.get(j).getFirst_name())) && (CsvDataNoDuplicate.get(i).getPhone().equals(CsvDataNoDuplicate.get(j).getPhone()))) {
@@ -45,6 +47,7 @@ public class RemoveDuplicateImpl implements RemoveDuplicate {
                     miss.add(CsvDataNoDuplicate.get(j));
                     CsvDataNoDuplicate.remove(CsvDataNoDuplicate.get(j));
                 }
+                //Check if the field is empty for further consideration
                 if((CsvDataNoDuplicate.get(i).getFirst_name().equals(CsvDataNoDuplicate.get(j).getFirst_name()))&&(CsvDataNoDuplicate.get(i).getEmail().equals(CsvDataNoDuplicate.get(j).getEmail()))){
                     if(CsvDataNoDuplicate.get(j).getPhone().equals("")){
                         miss.add(CsvDataNoDuplicate.get(i));
@@ -72,9 +75,13 @@ public class RemoveDuplicateImpl implements RemoveDuplicate {
         return CsvDataNoDuplicate;
     }
 
+    /**
+     * get duplicate data from the list
+     * @param file
+     * @return
+     */
     @Override
     public ArrayList<CsvData> getDuplicate(int file){
-        System.out.println("File number for duplicate"+file);
         CsvDataWithNoDuplicate(file);
         return miss;
     }

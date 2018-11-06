@@ -32,6 +32,7 @@ public class CsvReaderImpl implements CsvReader {
         ArrayList<CsvData> csvDataList = new ArrayList<>();
         System.out.println(fileName);
         try {
+            //passing the fle path for reading csv
             FileReader filereader = new FileReader(fileName);
             CSVReader csvReader = new CSVReader(filereader, ',', '"', 1);
             String[] nextRecord;
@@ -44,7 +45,6 @@ public class CsvReaderImpl implements CsvReader {
                 personData.setEmail(nextRecord[4]);
                 personData.setAddress1(nextRecord[5]);
                 personData.setAddress2(nextRecord[6]);
-
                 String zipcode = String.valueOf(nextRecord[7]);
                 if(zipcode == "" || zipcode == null)
                 {
@@ -59,7 +59,6 @@ public class CsvReaderImpl implements CsvReader {
                 personData.setState(nextRecord[10]);
                 personData.setPhone(nextRecord[11]);
                 csvDataList.add(personData);
-
             }
         }
         catch (Exception e) {

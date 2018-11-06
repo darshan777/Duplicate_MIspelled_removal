@@ -2,17 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="803fb495-fed1-4e38-bf99-9e525f2e3714" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../Validity_Retest/src/test/java/com/validity/demo/service/RemoveDuplicateImplTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Validity_Retest/src/main/java/com/validity/demo/controller/CsvController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Validity_Retest/src/main/java/com/validity/demo/controller/CsvController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Validity_Retest/src/main/java/com/validity/demo/dao/impl/CsvReaderImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Validity_Retest/src/main/java/com/validity/demo/dao/impl/CsvReaderImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Validity_Retest/src/main/java/com/validity/demo/dao/main/CsvReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Validity_Retest/src/main/java/com/validity/demo/dao/main/CsvReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Validity_Retest/src/main/java/com/validity/demo/dao/resource/advanced[1].csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Validity_Retest/src/main/java/com/validity/demo/dao/resource/normal[1].csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Validity_Retest/src/main/java/com/validity/demo/helper/CsvData.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Validity_Retest/src/main/java/com/validity/demo/helper/CsvData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Validity_Retest/src/main/java/com/validity/demo/service/Impl/RemoveDuplicateImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Validity_Retest/src/main/java/com/validity/demo/service/Impl/RemoveDuplicateImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Validity_Retest/src/main/java/com/validity/demo/service/Impl/RemoveMispellImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Validity_Retest/src/main/java/com/validity/demo/service/Impl/RemoveMispellImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Validity_Retest/src/main/java/com/validity/demo/service/main/RemoveDuplicate.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Validity_Retest/src/main/java/com/validity/demo/service/main/RemoveDuplicate.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Validity_Retest/src/main/java/com/validity/demo/service/main/RemoveMispell.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Validity_Retest/src/main/java/com/validity/demo/service/main/RemoveMispell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/select-data/select-data.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/select-data/select-data.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/select-data/select-data.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/select-data/select-data.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/service/csv-service.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/service/csv-service.service.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -208,7 +207,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1541524202426" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1541524453608" />
     <property name="js.last.introduce.type" value="LET" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -240,12 +239,12 @@
       <workItem from="1541190448853" duration="1555000" />
       <workItem from="1541213742655" duration="2839000" />
       <workItem from="1541345671172" duration="36715000" />
-      <workItem from="1541522723976" duration="1311000" />
+      <workItem from="1541522723976" duration="1342000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="42420000" />
+    <option name="totallyTimeSpent" value="42451000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
