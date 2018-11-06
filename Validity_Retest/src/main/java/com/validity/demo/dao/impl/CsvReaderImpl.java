@@ -13,6 +13,9 @@ import java.io.FileReader;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.logging.FileHandler;
+import java.util.logging.Handler;
+import java.util.logging.Logger;
 
 /**
  * Darshan
@@ -27,14 +30,20 @@ public class CsvReaderImpl implements CsvReader {
     @Autowired
     private ResourceLoader res;
 
+    private final static Logger LOGGER = Logger.getLogger("com.validity.demo");
+
     @Override
     public ArrayList<CsvData> getCsvData(String fileName){
         ArrayList<CsvData> csvDataList = new ArrayList<>();
-        System.out.println(fileName);
         try {
+            Handler fileHandler  = null;
+            fileHandler  = new FileHandler( "./applicationLogs.log");
+            LOGGER.setUseParentHandlers(false);
+            LOGGER.addHandler(fileHandler);
             //passing the fle path for reading csv
             FileReader filereader = new FileReader(fileName);
             CSVReader csvReader = new CSVReader(filereader, ',', '"', 1);
+            LOGGER.info("Parsing csv to read");
             String[] nextRecord;
             while ((nextRecord = csvReader.readNext()) != null) {
                 CsvData personData = new CsvData();
@@ -64,6 +73,7 @@ public class CsvReaderImpl implements CsvReader {
         catch (Exception e) {
             e.printStackTrace();
         }
+        LOGGER.info("csv Loaded into a list");
         return  csvDataList;
     }
 }

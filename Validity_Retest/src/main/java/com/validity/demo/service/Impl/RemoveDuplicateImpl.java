@@ -9,11 +9,13 @@ import org.springframework.stereotype.Service;
 import java.io.File;
 import java.sql.SQLOutput;
 import java.util.*;
+import java.util.logging.Logger;
 
 
 @Service
 public class RemoveDuplicateImpl implements RemoveDuplicate {
     ArrayList<CsvData> miss = new ArrayList<>();
+    private final static Logger LOGGER = Logger.getLogger("com.quickbase.devint.service.Impl");
     /**
      *
      * @return Arraylist of csv data
@@ -21,6 +23,7 @@ public class RemoveDuplicateImpl implements RemoveDuplicate {
      */
     @Override
     public ArrayList<CsvData> CsvDataWithNoDuplicate(int file){
+        LOGGER.info("Getting data to clean the duplicates");
         ArrayList<CsvData> CsvDataNoDuplicate = new ArrayList<>();
 
         CsvReader csvReader = new CsvReaderImpl();
@@ -40,37 +43,43 @@ public class RemoveDuplicateImpl implements RemoveDuplicate {
             CsvDataNoDuplicate = csvReader.getCsvData(ff.getAbsolutePath());
         }
         //Iterating over the list to find exact duplicates
-        for(int i=0; i<CsvDataNoDuplicate.size()-1; i++ ) {
-            for (int j = i + 1; j < CsvDataNoDuplicate.size(); j++) {
-                if ((CsvDataNoDuplicate.get(i).getEmail().equals(CsvDataNoDuplicate.get(j).getEmail())) && (CsvDataNoDuplicate.get(i).getFirst_name().equals(CsvDataNoDuplicate.get(j).getFirst_name())) && (CsvDataNoDuplicate.get(i).getPhone().equals(CsvDataNoDuplicate.get(j).getPhone()))) {
-                    miss.add(CsvDataNoDuplicate.get(i));
-                    miss.add(CsvDataNoDuplicate.get(j));
-                    CsvDataNoDuplicate.remove(CsvDataNoDuplicate.get(j));
-                }
-                //Check if the field is empty for further consideration
-                if((CsvDataNoDuplicate.get(i).getFirst_name().equals(CsvDataNoDuplicate.get(j).getFirst_name()))&&(CsvDataNoDuplicate.get(i).getEmail().equals(CsvDataNoDuplicate.get(j).getEmail()))){
-                    if(CsvDataNoDuplicate.get(j).getPhone().equals("")){
+        if (CsvDataNoDuplicate!=null) {
+            for (int i = 0; i < CsvDataNoDuplicate.size() - 1; i++) {
+                for (int j = i + 1; j < CsvDataNoDuplicate.size(); j++) {
+                    if ((CsvDataNoDuplicate.get(i).getEmail().equals(CsvDataNoDuplicate.get(j).getEmail())) && (CsvDataNoDuplicate.get(i).getFirst_name().equals(CsvDataNoDuplicate.get(j).getFirst_name())) && (CsvDataNoDuplicate.get(i).getPhone().equals(CsvDataNoDuplicate.get(j).getPhone()))) {
                         miss.add(CsvDataNoDuplicate.get(i));
                         miss.add(CsvDataNoDuplicate.get(j));
                         CsvDataNoDuplicate.remove(CsvDataNoDuplicate.get(j));
                     }
-                }
-                if((CsvDataNoDuplicate.get(i).getFirst_name().equals(CsvDataNoDuplicate.get(j).getFirst_name()))&&(CsvDataNoDuplicate.get(i).getPhone().equals(CsvDataNoDuplicate.get(j).getPhone()))){
-                    if(CsvDataNoDuplicate.get(j).getEmail().equals("")){
-                        miss.add(CsvDataNoDuplicate.get(i));
-                        miss.add(CsvDataNoDuplicate.get(j));
-                        CsvDataNoDuplicate.remove(CsvDataNoDuplicate.get(j));
+                    //Check if the field is empty for further consideration
+                    if ((CsvDataNoDuplicate.get(i).getFirst_name().equals(CsvDataNoDuplicate.get(j).getFirst_name())) && (CsvDataNoDuplicate.get(i).getEmail().equals(CsvDataNoDuplicate.get(j).getEmail()))) {
+                        if (CsvDataNoDuplicate.get(j).getPhone().equals("")) {
+                            miss.add(CsvDataNoDuplicate.get(i));
+                            miss.add(CsvDataNoDuplicate.get(j));
+                            CsvDataNoDuplicate.remove(CsvDataNoDuplicate.get(j));
+                        }
+                    }
+                    if ((CsvDataNoDuplicate.get(i).getFirst_name().equals(CsvDataNoDuplicate.get(j).getFirst_name())) && (CsvDataNoDuplicate.get(i).getPhone().equals(CsvDataNoDuplicate.get(j).getPhone()))) {
+                        if (CsvDataNoDuplicate.get(j).getEmail().equals("")) {
+                            miss.add(CsvDataNoDuplicate.get(i));
+                            miss.add(CsvDataNoDuplicate.get(j));
+                            CsvDataNoDuplicate.remove(CsvDataNoDuplicate.get(j));
+                        }
+                    }
+                    if ((CsvDataNoDuplicate.get(i).getEmail().equals(CsvDataNoDuplicate.get(j).getEmail())) && (CsvDataNoDuplicate.get(i).getPhone().equals(CsvDataNoDuplicate.get(j).getPhone()))) {
+                        if (CsvDataNoDuplicate.get(j).getFirst_name().equals("")) {
+                            miss.add(CsvDataNoDuplicate.get(i));
+                            miss.add(CsvDataNoDuplicate.get(j));
+                            CsvDataNoDuplicate.remove(CsvDataNoDuplicate.get(j));
+                        }
                     }
                 }
-                if((CsvDataNoDuplicate.get(i).getEmail().equals(CsvDataNoDuplicate.get(j).getEmail()))&&(CsvDataNoDuplicate.get(i).getPhone().equals(CsvDataNoDuplicate.get(j).getPhone()))){
-                    if(CsvDataNoDuplicate.get(j).getFirst_name().equals("")){
-                        miss.add(CsvDataNoDuplicate.get(i));
-                        miss.add(CsvDataNoDuplicate.get(j));
-                        CsvDataNoDuplicate.remove(CsvDataNoDuplicate.get(j));
-                    }
-                }
-            }
 
+            }
+            LOGGER.info("Data loaded with no duplicates");
+
+        }else{
+            System.out.println("List is empty");
         }
         return CsvDataNoDuplicate;
     }
@@ -82,6 +91,7 @@ public class RemoveDuplicateImpl implements RemoveDuplicate {
      */
     @Override
     public ArrayList<CsvData> getDuplicate(int file){
+        LOGGER.info("Getting duplicate data");
         CsvDataWithNoDuplicate(file);
         return miss;
     }
