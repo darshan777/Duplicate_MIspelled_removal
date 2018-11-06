@@ -32,25 +32,24 @@ export class SelectDataComponent implements OnInit {
     this.csvService.getAllDataWithoutDuplicateAndMispell().subscribe(
       (data : {}) => {this.csvDataList = data; console.log(this.csvDataList);}
     );
-    this.message= "Contains No exact Duplicate and Mispelled Words. Mispell of more than 2 letter is not considered mispell.";
-    this.condition = "If first_name is mispelled, email and phone should be same to be considered as mispell. Similarly if email is mispelled first_name and phone should be same"+
-                      "and for phone mispell, first_name and email has to be same";
+    this.message= "Contains No exact Duplicate and No Mispelled Words. Mispell of more than 3 letter is not considered mispell.";
+    this.condition = "Atleast 2 parameters should be exact out of 3. ";
 
   }
   duplicate(){
     this.csvService.getDuplicate().subscribe(
       (data : {}) => {this.csvDataList = data; console.log(this.csvDataList);}
     );
-    this.message= "Contains No exact Duplicate ( Mispelled words are not considered exact duplicate).";
-    this.condition = " first_name, email, phone have to be unique for not being as Exact Duplicates.";
+    this.message= "Contains List of duplicate pairs ";
+    this.condition = "Checks for exact duplicate and if one parameter is empty checks for other parameters";
   }
 
   mispell(){
     this.csvService.getMispelled().subscribe(
       (data : {}) => {this.csvDataList = data; console.log(this.csvDataList);}
     );
-    this.message= "Contains No exact Duplicate ( Mispelled words are not considered exact duplicate).";
-    this.condition = " first_name, email, phone have to be unique for not being as Exact Duplicates.";
+    this.message= "Contails list of mispelled words from the csv selected.";
+    this.condition = "the sepping should not have more than 3 mispelled letters from the original word";
   }
   goBack(){
     this.router.navigate(['/']);
