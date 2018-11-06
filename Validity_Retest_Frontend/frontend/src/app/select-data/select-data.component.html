@@ -1,6 +1,6 @@
 <nav class="navbar sticky-top navbar-light bg-light">
-  <div class="col-md-4">
-      <p>CSV Selected : {{currentFile}}</p>
+  <div class="col-md-2">
+      <p>CSV Selected : {{currentFile}} csv</p>
   </div>
   <div class="col-md-2">
     <button (click) ='noDuplicate()' class="btn btn-outline-success my-2 my-sm-0" type="submit">No duplicate</button>
@@ -8,13 +8,23 @@
   <div class="col-md-2">
     <button (click) ='noMispell()' class="btn btn-outline-success my-2 my-sm-0" type="submit">No Mispelled</button>
   </div>
-  <div class="col-md-3">
+  <div class="col-md-2">
+    <button (click) ='duplicate()' class="btn btn-outline-success my-2 my-sm-0" type="submit">Duplicate</button>
+  </div>
+  <div class="col-md-2">
+    <button (click) ='mispell()' class="btn btn-outline-success my-2 my-sm-0" type="submit">Mispell</button>
+  </div>
+  <div class="col-md-1">
 
   </div>
   <div class="col-md-1">
     <button (click) ='goBack()' class="btn btn-outline-success my-2 my-sm-0" type="submit">Home</button>
   </div>
 </nav>
+<div style="padding:5px 150px; ;">
+ <b>Description</b> : {{message}}<br>
+  <b>Condition</b> : {{condition}}
+</div>
 
 <div style="padding: 15px;">
   <table class="table table-striped">

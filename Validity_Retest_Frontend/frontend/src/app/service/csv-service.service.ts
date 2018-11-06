@@ -37,7 +37,7 @@ export class CsvServiceService {
 
   getAllDataWithoutDuplicateAndMispell(): Observable<any>{
     this.name = JSON.parse(localStorage.getItem('currentFile'));
-    if(this.name == "normal[1]"){
+    if(this.name == "normal"){
       this.data = 1;
     }
     else {
@@ -45,6 +45,34 @@ export class CsvServiceService {
     }
     console.log(this.name+":"+this.data);
     return this.http.get('http://localhost:8000/csv/nomispell/'+ this.data).pipe(
+      map(this.extractData)
+    );
+  }
+
+  getDuplicate(): Observable<any>{
+    this.name = JSON.parse(localStorage.getItem('currentFile'));
+    if(this.name == "normal"){
+      this.data = 1;
+    }
+    else {
+      this.data = 2;
+    }
+    console.log(this.name+":"+this.data);
+    return this.http.get('http://localhost:8000/csv/duplicate/'+ this.data).pipe(
+      map(this.extractData)
+    );
+  }
+
+  getMispelled(): Observable<any>{
+    this.name = JSON.parse(localStorage.getItem('currentFile'));
+    if(this.name == "normal"){
+      this.data = 1;
+    }
+    else {
+      this.data = 2;
+    }
+    console.log(this.name+":"+this.data);
+    return this.http.get('http://localhost:8000/csv/mispell/'+ this.data).pipe(
       map(this.extractData)
     );
   }

@@ -36,4 +36,20 @@ public class CsvController {
         ArrayList<CsvData> csvDataNoMispell = removeMispell.removeMissSpell(name);
         return csvDataNoMispell;
     }
+
+    @GetMapping(value = "/duplicate/{filename}")
+    public ArrayList<CsvData> getDuplicateData(@PathVariable(value = "filename") Integer name ){
+        System.out.println(name);
+        RemoveDuplicate removeDuplicate = new RemoveDuplicateImpl();
+        ArrayList<CsvData> duplicateDataList = removeDuplicate.getDuplicate(name);
+        return duplicateDataList;
+    }
+
+    @GetMapping(value = "/mispell/{filename}")
+    public ArrayList<CsvData> getMispellData(@PathVariable(value = "filename") Integer name ){
+        System.out.println(name);
+        RemoveMispell removeMispell = new RemoveMispellImpl();
+        ArrayList<CsvData> missSpellList = removeMispell.getMispell(name);
+        return missSpellList;
+    }
 }

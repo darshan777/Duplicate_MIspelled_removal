@@ -4,9 +4,13 @@ import com.validity.demo.dao.main.CsvReader;
 import com.validity.demo.helper.CsvData;
 import com.validity.demo.service.main.RemoveDuplicate;
 import com.validity.demo.service.main.RemoveMispell;
+import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 
+
+@Service
 public class RemoveMispellImpl implements RemoveMispell {
+    ArrayList<CsvData> mispellDataList = new ArrayList<>();
     /**
      * Checks The Data For Spelling mistake(Not more than 2 Characters)
      * Compares Email_id, First_name, Last_name
@@ -20,22 +24,37 @@ public class RemoveMispellImpl implements RemoveMispell {
             for (int j = i + 1; j < data.size(); j++) {
                 //Calls misspellCheck method to get the cost of edit
                 int countFirstName = misspellCheck(data.get(i).getFirst_name(), data.get(j).getFirst_name());
-                int countLastName = misspellCheck(data.get(i).getLast_name(), data.get(j).getLast_name());
+                int countPhone = misspellCheck(data.get(i).getPhone(), data.get(j).getPhone());
                 int countEmail = misspellCheck(data.get(i).getEmail(), data.get(j).getEmail());
-                if ((countFirstName == 1 || countFirstName == 2) && ((countLastName == 0) && (countEmail == 0))) {
-                    System.out.println(data.get(i).getFirst_name());
-                    System.out.println(data.get(j).getFirst_name());
+                if (((countFirstName<3) &&(countPhone == 0)) || ((countFirstName <3) &&(countEmail == 0))) {
+                    mispellDataList.add(data.get(i));
+                    mispellDataList.add(data.get(j));
                     data.remove(j);
                 }
-                if ((countLastName == 1 || countLastName == 2) && ((countFirstName == 0) && (countEmail == 0))) {
+                else if((countFirstName==0)&&(countEmail==0)&&(countPhone<3))
+                {
+                    mispellDataList.add(data.get(i));
+                    mispellDataList.add(data.get(j));
                     data.remove(j);
                 }
-                if ((countEmail == 1 || countEmail == 2) && ((countLastName == 1) && (countFirstName == 0))) {
+                else if((countFirstName==0)&&(countPhone==0)&&(countEmail<3))
+                {
+                    mispellDataList.add(data.get(i));
+                    mispellDataList.add(data.get(j));
                     data.remove(j);
                 }
+
             }
         }
+        System.out.println(mispellDataList);
         return data;
+    }
+
+    @Override
+    public ArrayList<CsvData> getMispell(int file){
+        removeMissSpell(file);
+        System.out.println("File number for Mispell "+file);
+        return mispellDataList;
     }
     /**
      * Calculates The cost of different Characters in Strings

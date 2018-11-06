@@ -30,6 +30,7 @@ public class CsvReaderImpl implements CsvReader {
     @Override
     public ArrayList<CsvData> getCsvData(String fileName){
         ArrayList<CsvData> csvDataList = new ArrayList<>();
+        System.out.println(fileName);
         try {
             FileReader filereader = new FileReader(fileName);
             CSVReader csvReader = new CSVReader(filereader, ',', '"', 1);

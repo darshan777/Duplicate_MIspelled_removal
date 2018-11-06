@@ -5,12 +5,15 @@ import com.validity.demo.dao.main.CsvReader;
 import com.validity.demo.helper.CsvData;
 import com.validity.demo.service.main.RemoveDuplicate;
 import javafx.util.Pair;
-
+import org.springframework.stereotype.Service;
 import java.io.File;
+import java.sql.SQLOutput;
 import java.util.*;
 
-public class RemoveDuplicateImpl implements RemoveDuplicate {
 
+@Service
+public class RemoveDuplicateImpl implements RemoveDuplicate {
+    ArrayList<CsvData> miss = new ArrayList<>();
     /**
      *
      * @return Arraylist of csv data
@@ -19,6 +22,7 @@ public class RemoveDuplicateImpl implements RemoveDuplicate {
     @Override
     public ArrayList<CsvData> CsvDataWithNoDuplicate(int file){
         ArrayList<CsvData> CsvDataNoDuplicate = new ArrayList<>();
+
         CsvReader csvReader = new CsvReaderImpl();
         if(file == 1){
             File ff = new File("src\\main\\resources\\normal[1].csv");
@@ -34,21 +38,44 @@ public class RemoveDuplicateImpl implements RemoveDuplicate {
             File ff = new File("src\\main\\resources\\normal[1].csv");
             CsvDataNoDuplicate = csvReader.getCsvData(ff.getAbsolutePath());
         }
-        ArrayList<CsvData> miss = new ArrayList<>();
         for(int i=0; i<CsvDataNoDuplicate.size()-1; i++ ) {
-            for(int j = i+1; j<CsvDataNoDuplicate.size(); j++) {
-                if((CsvDataNoDuplicate.get(i).getEmail().equals(CsvDataNoDuplicate.get(j).getEmail()))&&(CsvDataNoDuplicate.get(i).getFirst_name().equals(CsvDataNoDuplicate.get(j).getFirst_name()))&&(CsvDataNoDuplicate.get(i).getLast_name().equals(CsvDataNoDuplicate.get(j).getLast_name()))) {
-                    if(miss.contains(CsvDataNoDuplicate.get(i))) {
-                        miss.add(CsvDataNoDuplicate.get(j));
-
-                    }
-                    else {
-                        miss.add(CsvDataNoDuplicate.get(i));
-                    }
+            for (int j = i + 1; j < CsvDataNoDuplicate.size(); j++) {
+                if ((CsvDataNoDuplicate.get(i).getEmail().equals(CsvDataNoDuplicate.get(j).getEmail())) && (CsvDataNoDuplicate.get(i).getFirst_name().equals(CsvDataNoDuplicate.get(j).getFirst_name())) && (CsvDataNoDuplicate.get(i).getPhone().equals(CsvDataNoDuplicate.get(j).getPhone()))) {
+                    miss.add(CsvDataNoDuplicate.get(i));
+                    miss.add(CsvDataNoDuplicate.get(j));
                     CsvDataNoDuplicate.remove(CsvDataNoDuplicate.get(j));
                 }
+                if((CsvDataNoDuplicate.get(i).getFirst_name().equals(CsvDataNoDuplicate.get(j).getFirst_name()))&&(CsvDataNoDuplicate.get(i).getEmail().equals(CsvDataNoDuplicate.get(j).getEmail()))){
+                    if(CsvDataNoDuplicate.get(j).getPhone().equals("")){
+                        miss.add(CsvDataNoDuplicate.get(i));
+                        miss.add(CsvDataNoDuplicate.get(j));
+                        CsvDataNoDuplicate.remove(CsvDataNoDuplicate.get(j));
+                    }
+                }
+                if((CsvDataNoDuplicate.get(i).getFirst_name().equals(CsvDataNoDuplicate.get(j).getFirst_name()))&&(CsvDataNoDuplicate.get(i).getPhone().equals(CsvDataNoDuplicate.get(j).getPhone()))){
+                    if(CsvDataNoDuplicate.get(j).getEmail().equals("")){
+                        miss.add(CsvDataNoDuplicate.get(i));
+                        miss.add(CsvDataNoDuplicate.get(j));
+                        CsvDataNoDuplicate.remove(CsvDataNoDuplicate.get(j));
+                    }
+                }
+                if((CsvDataNoDuplicate.get(i).getEmail().equals(CsvDataNoDuplicate.get(j).getEmail()))&&(CsvDataNoDuplicate.get(i).getPhone().equals(CsvDataNoDuplicate.get(j).getPhone()))){
+                    if(CsvDataNoDuplicate.get(j).getFirst_name().equals("")){
+                        miss.add(CsvDataNoDuplicate.get(i));
+                        miss.add(CsvDataNoDuplicate.get(j));
+                        CsvDataNoDuplicate.remove(CsvDataNoDuplicate.get(j));
+                    }
+                }
             }
+
         }
         return CsvDataNoDuplicate;
+    }
+
+    @Override
+    public ArrayList<CsvData> getDuplicate(int file){
+        System.out.println("File number for duplicate"+file);
+        CsvDataWithNoDuplicate(file);
+        return miss;
     }
 }

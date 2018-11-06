@@ -7,4 +7,5 @@ import java.util.HashSet;
 
 public interface RemoveDuplicate {
     public ArrayList<CsvData> CsvDataWithNoDuplicate(int file);
+    public ArrayList<CsvData> getDuplicate(int file);
 }

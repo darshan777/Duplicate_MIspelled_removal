@@ -6,4 +6,5 @@ import java.util.ArrayList;
 
 public interface RemoveMispell {
     public ArrayList<CsvData> removeMissSpell(int file);
+    public ArrayList<CsvData> getMispell(int file);
 }
