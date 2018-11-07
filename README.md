@@ -5,6 +5,9 @@ Darshan Sanghavi(sanghavi.da@husky.neu.edu)
 - The Application is built using Restful Architecture
 - Front-End of the application is developed using Angular 6
 - Backend of the application is built using Spring Boot
+# Focus
+Primary focus while developing this aplication was to develop an end to end application using restful architecture and correct output in a sclable way.
+If given more time would focus on optimization by using different Datastructure(Hashmap, Tuples,...) to reduce the complexity of the application
 # Explaination
 - A data is considered unique if its firstname, email and phone are unique
 - A data is considered mispell if the mistake is upto 3 letters
